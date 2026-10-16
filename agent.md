@@ -2,7 +2,7 @@
 
 Universal specification and governance rules for AI coding agents (Claude Web, Claude Code CLI, Cursor, Windsurf, and custom agent harnesses).
 
-> **Public Remote Source:** `https://github.com/<owner>/spec-driven-agent-kit`
+> **Public Remote Source:** `https://github.com/mahdyarief/spec-driven-agent-kit`
 > **Zero-Clone Policy:** AI agents reference and fetch the latest version of this file and its templates directly via HTTP/MCP without requiring a local git clone.
 
 ---
@@ -13,9 +13,9 @@ To ensure all agents automatically use the latest rules and templates without lo
 
 | Platform / Agent | Integration Method | Configuration |
 |---|---|---|
-| **Claude Code CLI / OpenClaude** | Global `CLAUDE.md` or Remote Skill | Add directive in `~/.openclaude/CLAUDE.md`: `Always fetch latest spec rules from https://raw.githubusercontent.com/<owner>/spec-driven-agent-kit/main/agent.md` |
+| **Claude Code CLI / OpenClaude** | Global `CLAUDE.md` or Remote Skill | Add directive in `~/.openclaude/CLAUDE.md`: `Always fetch latest spec rules from https://raw.githubusercontent.com/mahdyarief/spec-driven-agent-kit/main/agent.md` |
 | **Claude Web / Custom GPT / Projects** | Project Instructions / Web Access | Add project custom instructions pointing to the public GitHub repository or Raw URLs. |
-| **Cursor / Windsurf / Copilot** | `.cursorrules` / System Prompt | Include: `Before drafting specifications, fetch templates from https://raw.githubusercontent.com/<owner>/spec-driven-agent-kit/main/` |
+| **Cursor / Windsurf / Copilot** | `.cursorrules` / System Prompt | Include: `Before drafting specifications, fetch templates from https://raw.githubusercontent.com/mahdyarief/spec-driven-agent-kit/main/` |
 | **MCP-Compatible Harnesses** | Remote MCP Server (SSE / Stream) | Connect `spec-driven-agent-kit` MCP server exposing `get_template`, `validate_spec`, and `export_pdf`. |
 
 ---

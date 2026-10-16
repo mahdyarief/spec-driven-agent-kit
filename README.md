@@ -27,8 +27,8 @@ Add this directive to your global `~/.openclaude/CLAUDE.md` or project rules:
 ```markdown
 ## Spec-Driven Governance
 Before drafting specifications or implementing changes:
-1. Fetch latest governance: https://raw.githubusercontent.com/<owner>/spec-driven-agent-kit/main/agent.md
-2. Fetch template: https://raw.githubusercontent.com/<owner>/spec-driven-agent-kit/main/spec-template.md
+1. Fetch latest governance: https://raw.githubusercontent.com/mahdyarief/spec-driven-agent-kit/main/agent.md
+2. Fetch template: https://raw.githubusercontent.com/mahdyarief/spec-driven-agent-kit/main/spec-template.md
 ```
 
 ## License
