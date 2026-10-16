@@ -24,14 +24,30 @@ target_release: # TBD
 - **Out of Scope (needs separate brief):** {Any new table/column/migration, new endpoint, contract break, or new settings domain}
 
 ## User Stories & Acceptance Criteria
+
+### User Stories
 - *As a {role}, I want to {action} so that {benefit}.*
 
+### Acceptance Criteria Matrix
 | # | Scenario / Input | UI Behavior | API Payload | Expected Result |
 |---|---|---|---|---|
 | 1 | ... | ... | ... | ... |
 
 - [ ] {Testable acceptance criterion mapped to table rows}
-- [ ] {Existing flows, self-collection/edit, and existing records remain backward-compatible}
+- [ ] {Existing flows and historical records remain backward-compatible}
+
+### BDD Scenarios (GIVEN-WHEN-THEN)
+```gherkin
+Scenario: {Happy Path Scenario Title}
+  GIVEN {initial system state or user precondition}
+  WHEN {user performs an action or submits input}
+  THEN {expected UI update, API response, and database state}
+
+Scenario: {Edge Case / Failure Scenario Title}
+  GIVEN {boundary condition or invalid input state}
+  WHEN {user triggers the action}
+  THEN {system rejects with exact error key and user-facing notice}
+```
 
 ## UI / UX Changes ({frontend_repo} / apps/web)
 - **Affected Routes / Screens:** {e.g., `src/routes/checkout/index.tsx` or `pages/dashboard/index.vue` — *for greenfield: specify new page paths*}

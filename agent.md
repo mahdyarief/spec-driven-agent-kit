@@ -59,18 +59,21 @@ Coding agents must first inspect the workspace to identify how source code is or
 ## 3. Feedback → Brief Workflow
 
 ### 3.1 Workflow Steps
-1. **Intake & Context Discovery:** Ingest raw feedback (chat, ticket, or PRD).
+1. **Project Steering Alignment:** Check `steering/product.md`, `steering/tech.md`, and `steering/structure.md` for project boundaries and architectural invariants.
+2. **Intake & Context Discovery:** Ingest raw feedback (chat, ticket, or PRD).
    - *For Brownfield:* Inspect the target codebase to understand current behavior and verify `file:line` citations.
    - *For Greenfield:* Define target tech stack, project scaffolding, and proposed directory structure (no codebase reference exists yet).
-2. **T-Shirt Sizing & Scaffolding:**
+3. **T-Shirt Sizing & Scaffolding:**
    - **Size S (Micro CR / 1-Component Tweak / Minor Bug):** Single file (`spec.md` with embedded edge cases, or `bug.md`).
-   - **Size M / L (New Application MVP / Multi-step Flow / Schema or API Touch):** Complete 3-file suite (`request.md`, `edgecases.md`, `spec.md`).
-3. **Decision Locking (`edgecases.md`):** Convert ambiguities into locked decisions (`Status: DECIDED`). Client words first; where client is silent, select the minimal-change option.
-4. **Specification (`spec.md`):** Define user stories, acceptance criteria matrix, UI changes, API/DB changes, error keys, and implementation notes:
+   - **Size M / L (New Application MVP / Multi-step Flow / Schema or API Touch):** Complete 4-file suite (`request.md`, `edgecases.md`, `spec.md`, `tasks.md`).
+4. **Decision Locking (`edgecases.md`):** Convert ambiguities into locked decisions (`Status: DECIDED`). Client words first; where client is silent, select the minimal-change option.
+5. **Specification (`spec.md`):** Define user stories, acceptance criteria matrix (with BDD GIVEN-WHEN-THEN scenarios), UI changes, API/DB changes, error keys, and implementation notes:
    - *Brownfield:* use exact `file:line` pointers and merge order.
    - *Greenfield:* specify new file paths, proposed directory structure, initial migrations, and seed data.
-5. **Client Sign-Off via PDF:** For Size M/L, combine markdown files and render to PDF using `markdown-preview` for client approval before coding.
-6. **Implementation Gate:** Code execution starts only after brief review and sign-off.
+6. **Task Breakdown (`tasks.md`):** Break the spec into sequential, atomic execution tasks across phases (Database & Contracts → SDK & Helpers → UI/UX → Verification).
+7. **Client Sign-Off via PDF:** For Size M/L, combine markdown files and render to PDF using `markdown-preview` for client approval before coding.
+8. **Implementation & Verification Gate:** Execute tasks step-by-step. Run `/spec-verify <slug>` to prevent spec drift and verify test coverage.
+9. **Archival (`spec-archive`):** Upon merge and release, archive the topic folder to `specs/archive/YYYY-MM-DD-<slug>/` to keep active specs clean.
 
 ---
 
