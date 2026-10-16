@@ -20,6 +20,19 @@ To ensure all agents automatically use the latest rules and templates without lo
 
 ---
 
+## 2. Workspace & Codebase Layout
+
+Coding agents must first inspect the workspace to identify how source code is organized:
+
+| Architecture | Source Code Paths | Operating Rules & Precedence |
+|---|---|---|
+| **Polyrepo (Separate FE & BE)** | `{fe_repo}/`<br>`{be_repo}/` | FE and BE live in separate sibling directories or repositories. Contract-first: BE API / Swagger updates precede FE SDK regeneration. Sub-repo instructions (`AGENTS.md`) govern local code conventions. |
+| **Monorepo (Turborepo / Nx / pnpm)** | `apps/{web,api,mobile}/`<br>`packages/{ui,shared,types}/` | Multiple apps share internal packages. Any change in `packages/*` requires checking impact across all consuming apps. |
+| **Unified / Fullstack Repo** | `src/app/`, `src/server/`<br>or `frontend/`, `backend/` | Single repository containing both layers (e.g., Next.js, Remix, Nuxt, Laravel, Django). |
+| **Specification / Briefs** | `specs/<topic>/`<br>or `feedback/<topic>/` | One folder per topic: `request.md` + `spec.md` + `edgecases.md` (or `bug.md`), plus combined `<topic>.pdf`. Never mix specs into application source folders. |
+
+---
+
 ## 2. Modes of Operation
 
 ### Mode A: Greenfield (Building New Applications / Features from Scratch)
