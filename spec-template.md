@@ -33,24 +33,25 @@ target_release: # TBD
 - [ ] {Testable acceptance criterion mapped to table rows}
 - [ ] {Existing flows, self-collection/edit, and existing records remain backward-compatible}
 
-## UI / UX Changes (`fe-feat-166`)
-- **Affected Routes:** {e.g., `app/routes/_dashboard.../1-information-step.tsx:L405-470`}
-- **Component & Helper Changes:** {Exact fields, labels, visibility rules, and single-source pure helpers (`app/lib/...`)}
+## UI / UX Changes ({frontend_repo} / apps/web)
+- **Affected Routes / Screens:** {e.g., `src/routes/checkout/index.tsx` or `pages/dashboard/index.vue` — *for greenfield: specify new page paths*}
+- **Component & State Changes:** {Exact fields, labels, visibility rules, and pure state/form helpers}
 
-## API & Database Changes (`backend-feat-166`)
-| Method | Path | Contract Change | Validation / Logic Change (`file:line`) |
+## API & Database Changes ({backend_repo} / apps/api)
+| Method | Path | Contract Change | Validation / Logic Change |
 |---|---|---|---|
-| POST | `/v1/...` | None / Extended | {Describe validation/usecase change} |
+| POST | `/v1/...` | None / Extended / New | {Describe validation, entity, or service changes} |
 
-- **Database / Migrations:** None *(or specify table/migration if `type: feature`)* · **FE SDK Regen Needed:** Yes / No
+- **Database / Migrations:** None *(or specify new tables/columns/indexes if building new feature/app)* · **SDK Regen Needed:** Yes / No
 
 ## Business Rules & Error Handling
-1. **{Rule name}:** {Exact rule + `file:line` evidence verifying FE & BE alignment}
+1. **{Rule name}:** {Exact business logic — *for brownfield: add file:line reference; for greenfield: add domain validation invariant*}
 
-| Error Key | HTTP | Message (EN & ID in `locales/`) | Trigger |
+| Error Key | HTTP | Message (EN & Localized) | Trigger |
 |---|---|---|---|
-| `...` | 400 | EN: "..." · ID: "..." | ... |
+| `...` | 400 | "..." | ... |
 
 ## Dependencies & Implementation Notes (Tests & Docs)
-- **Merge Order & Docs:** {e.g., BE PR first, then FE PR; update `backend-feat-166/docs/...`}
-- **Tests:** BE Vitest (`tests/unit/...`, `tests/integration/...`) · FE Unit (`app/lib/...`) & Manual checklist (`fe-feat-166/docs/...`)
+- **Merge Order & Docs:** {e.g., BE PR first, then FE PR; update API docs / Swagger}
+- **Tests:** Backend Tests (`tests/unit/...`, `tests/integration/...`) · Frontend Unit Tests & Manual QA Checklist
+<!-- Note for Greenfield Projects: If building a brand new application, file:line references do not exist yet. Instead, specify proposed directory structure, initial schemas, and new file boundaries. -->

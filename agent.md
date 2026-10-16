@@ -36,17 +36,20 @@ Coding agents must first inspect the workspace to identify how source code is or
 ## 2. Modes of Operation
 
 ### Mode A: Greenfield (Building New Applications / Features from Scratch)
-- **Goal:** Establish architecture, domain boundaries, data models, and core flows with clear acceptance criteria before writing code.
+- **Context Awareness:** When building an application for the first time, **no existing codebase or `file:line` references exist**. Agents must NOT expect or hallucinate existing file paths.
+- **Goal:** Establish foundational architecture, domain boundaries, data models, and core flows with clear acceptance criteria before writing code.
 - **Spec Focus:**
-  - Problem statement, user persona, and business value.
-  - Initial data schema & API contract design.
+  - Problem statement, user persona, business value, and target tech stack.
+  - Proposed directory structure and module layout (e.g., polyrepo vs monorepo vs fullstack).
+  - Initial data schema (tables, relations, indexes) & API contract design (endpoints, payloads, responses).
   - Acceptance Criteria matrix (Concrete Input → UI Flow → API/DB State → Output).
-  - Out of Scope for MVP / Initial Phase.
+  - Out of Scope for MVP (guardrail against premature over-engineering).
 
 ### Mode B: Brownfield (Change Requests, Enhancements, and Bug Fixes)
+- **Context Awareness:** Codebase already exists in production or development branch.
 - **Goal:** Solve client feedback or fix defects with minimal changes to existing code.
 - **Spec Focus:**
-  - Factual *Current State* with `file:line` citations.
+  - Factual *Current State* verified directly from code with exact `file:line` citations.
   - Strict *Minimal Change First* policy (reuse existing tables, columns, endpoints, and helpers).
   - Explicit *Out of Scope* for major-impact architectural additions (separate brief).
   - Backward compatibility guarantees for historical data.
@@ -56,12 +59,16 @@ Coding agents must first inspect the workspace to identify how source code is or
 ## 3. Feedback → Brief Workflow
 
 ### 3.1 Workflow Steps
-1. **Intake & Read:** Ingest raw feedback (chat, ticket, or PRD) and inspect the target codebase.
+1. **Intake & Context Discovery:** Ingest raw feedback (chat, ticket, or PRD).
+   - *For Brownfield:* Inspect the target codebase to understand current behavior and verify `file:line` citations.
+   - *For Greenfield:* Define target tech stack, project scaffolding, and proposed directory structure (no codebase reference exists yet).
 2. **T-Shirt Sizing & Scaffolding:**
    - **Size S (Micro CR / 1-Component Tweak / Minor Bug):** Single file (`spec.md` with embedded edge cases, or `bug.md`).
-   - **Size M / L (Multi-step Flow / Schema or API Touch / High Ambiguity):** Complete 3-file suite (`request.md`, `edgecases.md`, `spec.md`).
+   - **Size M / L (New Application MVP / Multi-step Flow / Schema or API Touch):** Complete 3-file suite (`request.md`, `edgecases.md`, `spec.md`).
 3. **Decision Locking (`edgecases.md`):** Convert ambiguities into locked decisions (`Status: DECIDED`). Client words first; where client is silent, select the minimal-change option.
-4. **Specification (`spec.md`):** Define user stories, acceptance criteria matrix, UI changes, API/DB changes, error keys, and implementation notes with exact `file:line` pointers.
+4. **Specification (`spec.md`):** Define user stories, acceptance criteria matrix, UI changes, API/DB changes, error keys, and implementation notes:
+   - *Brownfield:* use exact `file:line` pointers and merge order.
+   - *Greenfield:* specify new file paths, proposed directory structure, initial migrations, and seed data.
 5. **Client Sign-Off via PDF:** For Size M/L, combine markdown files and render to PDF using `markdown-preview` for client approval before coding.
 6. **Implementation Gate:** Code execution starts only after brief review and sign-off.
 
